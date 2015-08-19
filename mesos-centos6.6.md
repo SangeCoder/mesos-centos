@@ -179,6 +179,26 @@ yum安装即可：
     {{ end }}
     {{ end }}
     
+    #提示：由于centos6.6安装的haproxy版本问题，下面两句也需要注释掉
+    global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+        chroot /var/lib/haproxy
+        #stats socket /run/haproxy/admin.sock mode 660 level admin   #注释此句
+        stats timeout 30s
+        user haproxy
+        group haproxy
+        daemon
+
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
+        #ssl-default-bind-options no-sslv3  #注释此句
+
+        # Default ciphers to use on SSL-enabled listening sockets.
+        # For more information, see ciphers(1SSL).
+        # ssl-default-bind-ciphers kEECDH+aRSA+AES:kRSA+AES:+AES256:RC4-SHA:!kEDH:!LOW:!EXP:!MD5:!aNULL:!eNULL
+    
     
 ###   4.3.2 修改bamboo配置 ###
     [root@Siffre application]# vim bamboo/config/production.json
@@ -457,7 +477,9 @@ yum安装即可：
 ![](http://i.imgur.com/w2ROKlW.png)
 
 安装即可：
+
 ![](http://i.imgur.com/fw9nZyb.png)
+
 
 然后，保存即可！
 
