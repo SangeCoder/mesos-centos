@@ -323,3 +323,4 @@ yum安装即可：
     此处是看源码得来的，具体详见bamboo源码！
     
 
+**以下操作内容同[centos6.6](https://github.com/Siffre/mesos-centos/blob/master/mesos-centos6.6部署文档.md)，请参考另一个文档！**
